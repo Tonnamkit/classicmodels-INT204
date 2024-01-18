@@ -5,10 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
+import sit.int204.classicmodelsservice.entities.Employee;
 import sit.int204.classicmodelsservice.entities.Office;
 import sit.int204.classicmodelsservice.repositories.OfficeRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OfficeService {
@@ -22,6 +24,9 @@ public class OfficeService {
                 () -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Office Id " + officeCode + " DOES NOT EXIST !!!") {
                 }
         );
+    }
+    public Set<Employee> getAllEmployee(String officeCode){
+        return repository.findById(officeCode).get().getEmployees();
     }
     @Transactional
     public Office createNewOffice(Office office) {

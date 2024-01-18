@@ -15,7 +15,7 @@ public class Employee {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "office")
+    @JoinColumn(name = "officeCode")
     private Office office;
 
     @Column(name = "lastName", nullable = false, length = 50)
