@@ -16,22 +16,29 @@ import java.util.Set;
 public class OfficeService {
     @Autowired
     private OfficeRepository repository;
+
     public List<Office> getAllOffice() {
         return repository.findAll();
     }
+
     public Office getOffice(String officeCode) {
         return repository.findById(officeCode).orElseThrow(
                 () -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Office Id " + officeCode + " DOES NOT EXIST !!!") {
                 }
         );
     }
-    public Set<Employee> getAllEmployee(String officeCode){
-        return repository.findById(officeCode).get().getEmployees();
+
+    public Set<Employee> getAllEmployee(String officeCode) {
+        return repository.findById(officeCode).orElseThrow(
+                () -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Office Id " + officeCode + " DOES NOT EXIST !!!"))
+                .getEmployees();
     }
+
     @Transactional
     public Office createNewOffice(Office office) {
         return repository.save(office);
     }
+
     @Transactional
     public void removeOffice(String officeCode) {
         Office office = repository.findById(officeCode).orElseThrow(
@@ -39,9 +46,10 @@ public class OfficeService {
         );
         repository.delete(office);
     }
+
     @Transactional
     public Office updateOffice(String officeCode, Office office) {
-        if(office.getOfficeCode()!=null && !office.getOfficeCode().trim().isEmpty()) {
+        if (office.getOfficeCode() != null && !office.getOfficeCode().trim().isEmpty()) {
             if (!office.getOfficeCode().equals(officeCode)) {
                 throw new HttpClientErrorException(HttpStatus.BAD_REQUEST,
                         "Conflict Office code !!! (" + officeCode +
