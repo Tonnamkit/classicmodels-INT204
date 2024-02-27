@@ -1,8 +1,6 @@
 package sit.int204.classicmodelsservice.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +18,9 @@ public class Order {
     private Date shippedDate;
     private String status;
     private String comments;
-    private Integer customerNumber;
+    @ManyToOne
+    @JoinColumn(name = "customerNumber")
+    private Customer customer;
+
+
 }
