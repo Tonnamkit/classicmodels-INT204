@@ -3,11 +3,16 @@ package sit.int204.classicmodelsservice.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import sit.int204.classicmodelsservice.dtos.SimpleCustomerDTO;
 import sit.int204.classicmodelsservice.entities.Customer;
 import sit.int204.classicmodelsservice.entities.Order;
+import sit.int204.classicmodelsservice.exceptions.ErrorResponse;
+import sit.int204.classicmodelsservice.exceptions.GeneralException;
+import sit.int204.classicmodelsservice.exceptions.ItemNotFoundException;
 import sit.int204.classicmodelsservice.services.CustomerService;
 import sit.int204.classicmodelsservice.services.ListMapper;
 
@@ -61,4 +66,20 @@ public class CustomerController {
     private Customer newCustomer(@RequestBody Customer customer) {
         return service.addNewCustomer(customer);
     }
+
+
+//    @ExceptionHandler(ItemNotFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public ResponseEntity<ErrorResponse> handleItemNotFound(ItemNotFoundException exception, WebRequest request) {
+//        ErrorResponse er = new ErrorResponse(HttpStatus.NOT_FOUND.value(), exception.getMessage(),
+//                request.getDescription(false));
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(er);
+//    }
+
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public Exception handleOther(Exception exception) {
+//        GeneralException generalException = new GeneralException(exception.getMessage());
+//        return generalException;
+//    }
 }

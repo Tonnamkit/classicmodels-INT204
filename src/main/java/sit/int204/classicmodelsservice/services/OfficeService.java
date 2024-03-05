@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import sit.int204.classicmodelsservice.entities.Employee;
 import sit.int204.classicmodelsservice.entities.Office;
+import sit.int204.classicmodelsservice.exceptions.ItemNotFoundException;
 import sit.int204.classicmodelsservice.repositories.OfficeRepository;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class OfficeService {
 
     public Office getOffice(String officeCode) {
         return repository.findById(officeCode).orElseThrow(
-                () -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Office Id " + officeCode + " DOES NOT EXIST !!!") {
+                () -> new ItemNotFoundException("Office Id " + officeCode + " DOES NOT EXIST !!!") {
                 }
         );
     }

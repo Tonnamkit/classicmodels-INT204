@@ -44,5 +44,4 @@ public class ProductController {
     public List<Product> getAllProductsLine(@PathVariable String id) {
         return service.getAllProductsByProductLine(id);
     }
-
 }
