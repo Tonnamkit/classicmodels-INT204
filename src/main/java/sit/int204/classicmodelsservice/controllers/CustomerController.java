@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sit.int204.classicmodelsservice.dtos.PageDTO;
 import sit.int204.classicmodelsservice.dtos.SimpleCustomerDTO;
 import sit.int204.classicmodelsservice.entities.Customer;
 import sit.int204.classicmodelsservice.entities.Order;
