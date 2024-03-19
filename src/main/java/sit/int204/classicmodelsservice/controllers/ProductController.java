@@ -1,5 +1,7 @@
 package sit.int204.classicmodelsservice.controllers;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +22,11 @@ public class ProductController {
     public ResponseEntity<Object> getAllProducts(
             @RequestParam(required = false, defaultValue = "0") Double lower,
             @RequestParam(required = false, defaultValue = "0") Double upper,
-            @RequestParam(required = false, defaultValue = "") String productName,
+            @RequestParam(required = false, defaultValue = "") @Size(min = 5) String productName,
             @RequestParam(required = false, defaultValue = "") String[] sortBy,
             @RequestParam(required = false, defaultValue = "asc") String[] direction,
             @RequestParam(required = false, defaultValue = "0") int pageNo,
-            @RequestParam(required = false, defaultValue = "0") int pageSize) {
+            @RequestParam(required = false, defaultValue = "0") @Min(10) int pageSize) {
         if (pageSize == 0){
             return ResponseEntity.ok(service.getAllProducts());
         }else{

@@ -17,6 +17,6 @@ public class SimpleCustomerDTO {
     @JsonIgnore
     private SimpleEmployeeDTO sales;
     public String getSalesPerson(){
-        return sales == null ? "-" : sales.getName() + " - " + sales.getOfficeCity();
+        return sales == null ? "-" : sales.getName();
     }
 }

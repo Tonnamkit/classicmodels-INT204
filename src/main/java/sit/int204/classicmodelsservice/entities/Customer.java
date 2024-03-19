@@ -45,7 +45,7 @@ public class Customer {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "salesRepEmployeeNumber", nullable = false)
-    private Employee salesRepEmployee;
+    private Employee sales;
     @Column(name = "creditLimit", nullable = false)
     private Double creditLimit;
     @JsonIgnore
